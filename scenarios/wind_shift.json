@@ -1,0 +1,1112 @@
+{
+ "schema_version": "1",
+ "scenario_id": "wind_shift",
+ "title": "Wind shift toward SE",
+ "horizon": 60,
+ "step_minutes": 2,
+ "grid": [
+  10,
+  6
+ ],
+ "nodes": {
+  "NC": "c3_0",
+  "PASS": "c2_1",
+  "PR": "c3_2",
+  "FORK": "c5_2",
+  "BASE": "c7_2",
+  "SE": "c9_2",
+  "VJ": "c5_4",
+  "SS": "c6_5"
+ },
+ "roads": [
+  {
+   "id": "R1",
+   "a": "BASE",
+   "b": "FORK",
+   "travel_steps": 3,
+   "capacity": 2,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R2",
+   "a": "FORK",
+   "b": "PR",
+   "travel_steps": 3,
+   "capacity": 1,
+   "engine_ok": true,
+   "initial_status": "CLOSED_CLEARABLE",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R3",
+   "a": "FORK",
+   "b": "VJ",
+   "travel_steps": 2,
+   "capacity": 2,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R4",
+   "a": "VJ",
+   "b": "PR",
+   "travel_steps": 8,
+   "capacity": 1,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R5",
+   "a": "VJ",
+   "b": "SS",
+   "travel_steps": 6,
+   "capacity": 2,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R6",
+   "a": "FORK",
+   "b": "SE",
+   "travel_steps": 6,
+   "capacity": 2,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R7",
+   "a": "VJ",
+   "b": "SE",
+   "travel_steps": 9,
+   "capacity": 1,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R8",
+   "a": "PR",
+   "b": "PASS",
+   "travel_steps": 3,
+   "capacity": 1,
+   "engine_ok": false,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R9",
+   "a": "PASS",
+   "b": "NC",
+   "travel_steps": 3,
+   "capacity": 1,
+   "engine_ok": false,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R10",
+   "a": "NC",
+   "b": "FORK",
+   "travel_steps": 7,
+   "capacity": 1,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  },
+  {
+   "id": "R11",
+   "a": "BASE",
+   "b": "SS",
+   "travel_steps": 4,
+   "capacity": 2,
+   "engine_ok": true,
+   "initial_status": "OPEN",
+   "status_override": null,
+   "clear_progress": 0
+  }
+ ],
+ "zones": [
+  {
+   "id": "NC",
+   "name": "North Camp",
+   "cell": "c3_0",
+   "unassisted_initial": 20,
+   "assisted_initial": 20,
+   "self_evacuated": 0,
+   "assisted_picked_up": 0
+  },
+  {
+   "id": "PR",
+   "name": "Pine Ridge",
+   "cell": "c3_2",
+   "unassisted_initial": 90,
+   "assisted_initial": 30,
+   "self_evacuated": 0,
+   "assisted_picked_up": 0
+  },
+  {
+   "id": "VJ",
+   "name": "Valley Junction",
+   "cell": "c5_4",
+   "unassisted_initial": 240,
+   "assisted_initial": 60,
+   "self_evacuated": 0,
+   "assisted_picked_up": 0
+  }
+ ],
+ "shelters": [
+  {
+   "id": "SE",
+   "name": "Shelter East",
+   "cell": "c9_2",
+   "capacity": 150,
+   "background": 40,
+   "arrivals": 0
+  },
+  {
+   "id": "SS",
+   "name": "Shelter South",
+   "cell": "c6_5",
+   "capacity": 350,
+   "background": 320,
+   "arrivals": 0
+  }
+ ],
+ "cells": [
+  {
+   "id": "c0_0",
+   "x": 0,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c1_0",
+   "x": 1,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c2_0",
+   "x": 2,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_0",
+   "x": 3,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_0",
+   "x": 4,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_0",
+   "x": 5,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_0",
+   "x": 6,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_0",
+   "x": 7,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_0",
+   "x": 8,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_0",
+   "x": 9,
+   "y": 0,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c0_1",
+   "x": 0,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c1_1",
+   "x": 1,
+   "y": 1,
+   "fuel_initial": 0.9,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c2_1",
+   "x": 2,
+   "y": 1,
+   "fuel_initial": 0.9,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": true,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_1",
+   "x": 3,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_1",
+   "x": 4,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_1",
+   "x": 5,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_1",
+   "x": 6,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_1",
+   "x": 7,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_1",
+   "x": 8,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_1",
+   "x": 9,
+   "y": 1,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c0_2",
+   "x": 0,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "BURNING",
+   "intensity": 2,
+   "ignited_step": 0
+  },
+  {
+   "id": "c1_2",
+   "x": 1,
+   "y": 2,
+   "fuel_initial": 0.9,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c2_2",
+   "x": 2,
+   "y": 2,
+   "fuel_initial": 0.9,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_2",
+   "x": 3,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_2",
+   "x": 4,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_2",
+   "x": 5,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_2",
+   "x": 6,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_2",
+   "x": 7,
+   "y": 2,
+   "fuel_initial": 0.2,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_2",
+   "x": 8,
+   "y": 2,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_2",
+   "x": 9,
+   "y": 2,
+   "fuel_initial": 0.2,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c0_3",
+   "x": 0,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "BURNING",
+   "intensity": 2,
+   "ignited_step": 0
+  },
+  {
+   "id": "c1_3",
+   "x": 1,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "BURNING",
+   "intensity": 1,
+   "ignited_step": 0
+  },
+  {
+   "id": "c2_3",
+   "x": 2,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_3",
+   "x": 3,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_3",
+   "x": 4,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_3",
+   "x": 5,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_3",
+   "x": 6,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_3",
+   "x": 7,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_3",
+   "x": 8,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_3",
+   "x": 9,
+   "y": 3,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c0_4",
+   "x": 0,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c1_4",
+   "x": 1,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c2_4",
+   "x": 2,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_4",
+   "x": 3,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_4",
+   "x": 4,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_4",
+   "x": 5,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_4",
+   "x": 6,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_4",
+   "x": 7,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_4",
+   "x": 8,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_4",
+   "x": 9,
+   "y": 4,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c0_5",
+   "x": 0,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c1_5",
+   "x": 1,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c2_5",
+   "x": 2,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c3_5",
+   "x": 3,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c4_5",
+   "x": 4,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c5_5",
+   "x": 5,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c6_5",
+   "x": 6,
+   "y": 5,
+   "fuel_initial": 0.2,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c7_5",
+   "x": 7,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c8_5",
+   "x": 8,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  },
+  {
+   "id": "c9_5",
+   "x": 9,
+   "y": 5,
+   "fuel_initial": 0.7,
+   "fuel_burned": 0.0,
+   "firebreak_bonus": false,
+   "state": "UNBURNED",
+   "intensity": 0,
+   "ignited_step": null
+  }
+ ],
+ "resources": [
+  {
+   "id": "B1",
+   "type": "bus",
+   "node": "BASE",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 30,
+   "fuel_capacity": 40,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": null,
+   "available": true
+  },
+  {
+   "id": "B2",
+   "type": "bus",
+   "node": "BASE",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 30,
+   "fuel_capacity": 40,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": null,
+   "available": true
+  },
+  {
+   "id": "V1",
+   "type": "transport",
+   "node": "BASE",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 10,
+   "fuel_capacity": 30,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": null,
+   "available": true
+  },
+  {
+   "id": "C1",
+   "type": "crew",
+   "node": "FORK",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 0,
+   "fuel_capacity": null,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": "FORK",
+   "available": true
+  },
+  {
+   "id": "C2",
+   "type": "crew",
+   "node": "FORK",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 0,
+   "fuel_capacity": null,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": "FORK",
+   "available": true
+  },
+  {
+   "id": "C3",
+   "type": "crew",
+   "node": "BASE",
+   "edge": null,
+   "edge_steps_left": 0,
+   "capacity": 0,
+   "fuel_capacity": null,
+   "fuel_used": 0,
+   "aboard_people": {},
+   "aboard_crew": null,
+   "engine_node": "BASE",
+   "available": true
+  }
+ ],
+ "wind": {
+  "direction": "E",
+  "speed": 2
+ },
+ "fire_params": {
+  "k": 0.06,
+  "p_max": 0.9,
+  "diag_weight": 0.7,
+  "wind_factor": 0.25,
+  "wind_floor": 0.25,
+  "growth_every": 4,
+  "growth_fuel_min": 0.3,
+  "max_intensity": 4,
+  "burn_rate": 0.04,
+  "burnout_fuel": 0.05,
+  "s_engine": 0.7,
+  "s_hand": 0.5,
+  "firebreak_bonus": 0.15,
+  "s_cap": 0.9,
+  "reduce_every": 3,
+  "contain_reach": 1,
+  "contain_max_targets": 3,
+  "contain_max_intensity_at_start": 3,
+  "contain_min_steps": 3,
+  "hazard_reach": 1,
+  "exposure_hazard_min": 2,
+  "crew_risk_hazard_min": 3,
+  "self_evac_per_step": 20,
+  "load_steps": 2,
+  "unload_steps": 1,
+  "refuel_steps": 3,
+  "clear_road_steps": 6,
+  "transfer_board_steps": 1,
+  "transfer_drop_steps": 1,
+  "logistics_fuel_min": 5,
+  "shelter_risk_fraction": 0.95,
+  "wait_risk_steps": 3
+ },
+ "evidence": [
+  {
+   "evidence_id": "E-EVAC-01",
+   "holders": [
+    "EVAC"
+   ],
+   "field_path": "zones.PR.assisted_initial",
+   "true_value": 30,
+   "prior_value": 12,
+   "summary": "Pine Ridge has 30 assisted residents waiting, not the 12 in the public estimate.",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-EVAC-02",
+   "holders": [
+    "EVAC"
+   ],
+   "field_path": "zones.VJ.assisted_initial",
+   "true_value": 60,
+   "prior_value": 30,
+   "summary": "Valley Junction has 60 assisted residents waiting, not the 30 in the public estimate.",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-EVAC-03",
+   "holders": [
+    "EVAC"
+   ],
+   "field_path": "zones.NC.assisted_initial",
+   "true_value": 20,
+   "prior_value": 4,
+   "summary": "North Camp has 20 assisted residents waiting, not the 4 in the public estimate.",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-FIRE-01",
+   "holders": [
+    "FIRE"
+   ],
+   "field_path": "cells[c1_1, c2_1, c1_2, c2_2].fuel_initial",
+   "true_value": 0.9,
+   "prior_value": 0.5,
+   "summary": "Ridge cells carry heavy fuel (0.9); fire will intensify toward Ridge Pass.",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-FIRE-02",
+   "holders": [
+    "FIRE"
+   ],
+   "field_path": "cells.c2_1.firebreak_bonus",
+   "true_value": true,
+   "prior_value": false,
+   "summary": "Ridge Pass has a natural firebreak; containment there is more effective.",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-LOG-01",
+   "holders": [
+    "LOG"
+   ],
+   "field_path": "roads.R2.initial_status",
+   "true_value": "CLOSED_CLEARABLE",
+   "prior_value": "OPEN",
+   "summary": "R2 Fork-Pine Ridge blocked by downed trees; a crew can clear it in about 6 steps",
+   "observed_step": 0,
+   "confidence": "high"
+  },
+  {
+   "evidence_id": "E-LOG-02",
+   "holders": [
+    "LOG"
+   ],
+   "field_path": "shelters.SS.background",
+   "true_value": 320,
+   "prior_value": 290,
+   "summary": "Shelter South already holds 320 people, not 290; only 30 beds remain.",
+   "observed_step": 0,
+   "confidence": "high"
+  }
+ ],
+ "events": [
+  {
+   "event_id": "wind_shift-e1",
+   "step": 15,
+   "kind": "wind_change",
+   "target": null,
+   "value": "SE:3",
+   "public": true
+  }
+ ],
+ "targets": {
+  "EVAC": [
+   {
+    "metric": "assisted_completion",
+    "direction": "max",
+    "aspiration": 0.9,
+    "floor": 0.75
+   },
+   {
+    "metric": "civilian_exposure",
+    "direction": "min",
+    "aspiration": 600,
+    "floor": 1200
+   }
+  ],
+  "FIRE": [
+   {
+    "metric": "fire_extent",
+    "direction": "min",
+    "aspiration": 45,
+    "floor": 60
+   },
+   {
+    "metric": "crew_risk_steps",
+    "direction": "min",
+    "aspiration": 0,
+    "floor": 4
+   }
+  ],
+  "LOG": [
+   {
+    "metric": "logistics_risk",
+    "direction": "min",
+    "aspiration": 1,
+    "floor": 3
+   }
+  ]
+ },
+ "label": "Synthetic simulation"
+}
