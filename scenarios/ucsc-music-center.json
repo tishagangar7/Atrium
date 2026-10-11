@@ -1,0 +1,81 @@
+{
+  "schema_version": "1",
+  "id": "ucsc-music-center-edge",
+  "name": "Music Center · Great Meadow",
+  "seed": 42,
+  "columns": 40,
+  "rows": 30,
+  "cellMeters": 8,
+  "stepSeconds": 10,
+  "horizonSteps": 720,
+  "initialIgnitions": [366, 367, 406, 407],
+  "weather": {
+    "windSpeed": 6,
+    "windToward": 110,
+    "humidity": 28,
+    "temperature": 31,
+    "fuelMoisture": 9
+  },
+  "presets": {
+    "coastal": {
+      "windSpeed": 2,
+      "windToward": 80,
+      "humidity": 76,
+      "temperature": 18,
+      "fuelMoisture": 22
+    },
+    "dry": {
+      "windSpeed": 6,
+      "windToward": 110,
+      "humidity": 28,
+      "temperature": 31,
+      "fuelMoisture": 9
+    },
+    "offshore": {
+      "windSpeed": 13,
+      "windToward": 225,
+      "humidity": 12,
+      "temperature": 35,
+      "fuelMoisture": 4
+    }
+  },
+  "physics": {
+    "gravity": 9.81,
+    "emberDrag": 0.8,
+    "emberLift": 13,
+    "emberLifetime": 38,
+    "maxEmbers": 450,
+    "ignitionCoefficient": 0.0018,
+    "burnRate": 0.0016,
+    "fuelHeatMJkg": 18,
+    "moistureTimeSeconds": 3600,
+    "suppressionFactor": 0.72
+  },
+  "buildings": [
+    {
+      "name": "Music Center (schematic)",
+      "x": 75,
+      "z": 51,
+      "width": 30,
+      "depth": 20,
+      "height": 9
+    },
+    {
+      "name": "Practice wing",
+      "x": 112,
+      "z": 49,
+      "width": 18,
+      "depth": 16,
+      "height": 6
+    }
+  ],
+  "road": { "z": 27, "width": 12 },
+  "fuelLoads": { "forest": 2.5, "grass": 0.65, "scrub": 1.6 },
+  "sources": [
+    "https://music.ucsc.edu/facilities/virtual-tour/",
+    "https://research.fs.usda.gov/treesearch/34880",
+    "https://research.fs.usda.gov/silvics/redwood",
+    "https://research.fs.usda.gov/rmrs/fire/fuels",
+    "https://osfm.fire.ca.gov/what-we-do/community-wildfire-preparedness-and-mitigation/utility-wildfire-mitigation"
+  ]
+}
