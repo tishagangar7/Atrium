@@ -1,0 +1,20 @@
+# secrets
+.env
+backend/.env
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+# node
+node_modules/
+dist/
+*.tsbuildinfo
+frontend/dist/
+# run artifacts: keep fixtures + results only (PRD §12.7)
+runs/*
+!runs/fixtures/
+!runs/results.csv
+# local tool state
+.claude/settings.local.json
+.DS_Store

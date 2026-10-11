@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Block commits on main, bad branch names and .env files; warn on cross-ownership edits.
+source "$(git rev-parse --show-toplevel)/scripts/lib.sh"
+b="$(current_branch)"
+case "$b" in
+  main|master) echo "✗ Commit on '$b' blocked. Run: scripts/start-task.sh <area> <name> <slug>  (AGENTS.md §3)"; exit 1;;
+  "(detached)") echo "✗ Detached HEAD. Switch to a feature branch first."; exit 1;;
+esac
+[[ "$b" =~ $BRANCH_RE ]] || { echo "✗ Branch '$b' must match <area>/<name>-<slug> (AGENTS.md §3). Rename: git branch -m <new>"; exit 1; }
+
+staged="$(git diff --cached --name-only --diff-filter=ACMR)"
+if echo "$staged" | grep -qE '(^|/)\.env$'; then echo "✗ .env file staged. Secrets stay local."; exit 1; fi
+
+area="${b%%/*}"
+globs="$(area_globs "$area")"
+[[ "$globs" == "*" ]] && exit 0
+outside=()
+while IFS= read -r f; do
+  [[ -z "$f" ]] && continue
+  case "$f" in docs/handoff/*|AGENTS.md|CLAUDE.md) continue;; esac
+  ok=0
+  for g in $globs; do [[ "$f" == $g ]] && { ok=1; break; }; done
+  [[ $ok -eq 0 ]] && outside+=("$f")
+done <<< "$staged"
+if [[ ${#outside[@]} -gt 0 ]]; then
+  echo "⚠ Ownership warning: '$area' branch touches files owned by another workstream (AGENTS.md §2):"
+  printf '    %s\n' "${outside[@]}"
+  echo "  Fine only if that owner agreed. Note it in your handoff doc under 'Asks for other owners'."
+fi
+exit 0

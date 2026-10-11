@@ -1,0 +1,82 @@
+{
+  "schema_version": "1",
+  "scenario_id": "hello-fixture",
+  "title": "Hello fixture (WS-C stub, not a real scenario)",
+  "horizon": 60,
+  "step_minutes": 15,
+  "grid": [4, 4],
+  "nodes": { "BASE": "C00", "VJ": "C01", "SS": "C09" },
+  "roads": [
+    {
+      "id": "R1",
+      "a": "BASE",
+      "b": "VJ",
+      "travel_steps": 3,
+      "capacity": 2,
+      "engine_ok": true,
+      "initial_status": "OPEN",
+      "status_override": null,
+      "clear_progress": 0
+    }
+  ],
+  "zones": [
+    {
+      "id": "VJ",
+      "name": "Vista Junction",
+      "cell": "C01",
+      "unassisted_initial": 40,
+      "assisted_initial": 10,
+      "self_evacuated": 0,
+      "assisted_picked_up": 0
+    }
+  ],
+  "shelters": [
+    {
+      "id": "SS",
+      "name": "Safe Shelter",
+      "cell": "C09",
+      "capacity": 200,
+      "background": 0,
+      "arrivals": 0
+    }
+  ],
+  "cells": [
+    {
+      "id": "C00", "x": 0, "y": 0,
+      "fuel_initial": 10.0, "fuel_burned": 0.0, "firebreak_bonus": false,
+      "state": "UNBURNED", "intensity": 0, "ignited_step": null
+    },
+    {
+      "id": "C01", "x": 0, "y": 1,
+      "fuel_initial": 10.0, "fuel_burned": 0.0, "firebreak_bonus": false,
+      "state": "UNBURNED", "intensity": 0, "ignited_step": null
+    },
+    {
+      "id": "C09", "x": 3, "y": 3,
+      "fuel_initial": 10.0, "fuel_burned": 0.0, "firebreak_bonus": false,
+      "state": "UNBURNED", "intensity": 0, "ignited_step": null
+    }
+  ],
+  "resources": [
+    {
+      "id": "B1",
+      "type": "bus",
+      "node": "BASE",
+      "edge": null,
+      "edge_steps_left": 0,
+      "capacity": 30,
+      "fuel_capacity": 60,
+      "fuel_used": 0,
+      "aboard_people": {},
+      "aboard_crew": null,
+      "engine_node": null,
+      "available": true
+    }
+  ],
+  "wind": { "direction": "N", "speed": 1 },
+  "fire_params": { "k": 0.0, "growth_every": 4.0, "burn_rate": 0.0 },
+  "evidence": [],
+  "events": [],
+  "targets": {},
+  "label": "Synthetic simulation"
+}

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Block direct pushes to main/master. Changes reach main only through PRs.
+while read -r _lref _lsha rref _rsha; do
+  case "$rref" in
+    refs/heads/main|refs/heads/master) echo "✗ Push to ${rref#refs/heads/} blocked. Push your feature branch and open a PR (AGENTS.md §3)."; exit 1;;
+  esac
+done
+exit 0
