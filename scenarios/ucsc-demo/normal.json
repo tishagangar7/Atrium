@@ -1,0 +1,224 @@
+{
+  "schema_version": "1",
+  "scenario_id": "normal",
+  "title": "West Forest fire - synthetic forested region",
+  "label": "Synthetic simulation",
+  "horizon": 60,
+  "step_minutes": 2,
+  "grid": [10, 6],
+
+  "nodes": {
+    "NC": "c3_0",
+    "PASS": "c2_1",
+    "PR": "c3_2",
+    "FORK": "c5_2",
+    "BASE": "c7_2",
+    "SE": "c9_2",
+    "VJ": "c5_4",
+    "SS": "c6_5"
+  },
+  "node_names": {
+    "NC": "North Camp",
+    "PASS": "Ridge Pass",
+    "PR": "Pine Ridge",
+    "FORK": "Forest Fork",
+    "BASE": "Response Base",
+    "SE": "Shelter East",
+    "VJ": "Valley Junction",
+    "SS": "Shelter South"
+  },
+  "node_roles": {
+    "NC": "zone",
+    "PASS": "junction",
+    "PR": "zone",
+    "FORK": "junction",
+    "BASE": "base",
+    "SE": "shelter",
+    "VJ": "zone",
+    "SS": "shelter"
+  },
+
+  "roads": [
+    { "id": "R1", "a": "BASE", "b": "FORK", "travel_steps": 3, "capacity": 2, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R2", "a": "FORK", "b": "PR", "travel_steps": 3, "capacity": 1, "engine_ok": true, "initial_status": "CLOSED_CLEARABLE", "public_prior_status": "OPEN" },
+    { "id": "R3", "a": "FORK", "b": "VJ", "travel_steps": 2, "capacity": 2, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R4", "a": "VJ", "b": "PR", "travel_steps": 4, "capacity": 1, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R5", "a": "VJ", "b": "SS", "travel_steps": 3, "capacity": 2, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R6", "a": "FORK", "b": "SE", "travel_steps": 6, "capacity": 2, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R7", "a": "VJ", "b": "SE", "travel_steps": 5, "capacity": 1, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R8", "a": "PR", "b": "PASS", "travel_steps": 3, "capacity": 1, "engine_ok": false, "initial_status": "OPEN" },
+    { "id": "R9", "a": "PASS", "b": "NC", "travel_steps": 3, "capacity": 1, "engine_ok": false, "initial_status": "OPEN" },
+    { "id": "R10", "a": "NC", "b": "FORK", "travel_steps": 7, "capacity": 1, "engine_ok": true, "initial_status": "OPEN" },
+    { "id": "R11", "a": "BASE", "b": "SS", "travel_steps": 4, "capacity": 2, "engine_ok": true, "initial_status": "OPEN" }
+  ],
+
+  "zones": [
+    { "id": "NC", "name": "North Camp", "cell": "c3_0", "unassisted_initial": 20, "assisted_initial": 20, "assisted_initial_prior": 4 },
+    { "id": "PR", "name": "Pine Ridge", "cell": "c3_2", "unassisted_initial": 90, "assisted_initial": 30, "assisted_initial_prior": 12 },
+    { "id": "VJ", "name": "Valley Junction", "cell": "c5_4", "unassisted_initial": 240, "assisted_initial": 60, "assisted_initial_prior": 30 }
+  ],
+
+  "shelters": [
+    { "id": "SE", "name": "Shelter East", "cell": "c9_2", "capacity": 150, "background": 40 },
+    { "id": "SS", "name": "Shelter South", "cell": "c6_5", "capacity": 350, "background": 320, "background_prior": 290 }
+  ],
+
+  "cells": {
+    "fuel_default": 0.7,
+    "fuel_overrides": [
+      {
+        "cells": ["c7_2", "c9_2", "c6_5"],
+        "fuel_initial": 0.2,
+        "note": "cleared ground on the BASE, SE and SS node cells"
+      },
+      {
+        "cells": ["c1_1", "c2_1", "c1_2", "c2_2"],
+        "fuel_initial": 0.9,
+        "fuel_initial_prior": 0.5,
+        "note": "ridge fuel; true value held by Fire Operations as E-FIRE-01"
+      }
+    ],
+    "firebreak_bonus": ["c2_1"],
+    "firebreak_bonus_prior": [],
+    "initial_fire": [
+      { "cell": "c0_2", "intensity": 2 },
+      { "cell": "c0_3", "intensity": 2 },
+      { "cell": "c1_3", "intensity": 1 }
+    ]
+  },
+
+  "resources": [
+    { "id": "B1", "type": "bus", "name": "Evacuation bus B1", "start_node": "BASE", "capacity": 30, "fuel_capacity": 40, "crew_capacity": 0 },
+    { "id": "B2", "type": "bus", "name": "Evacuation bus B2", "start_node": "BASE", "capacity": 30, "fuel_capacity": 40, "crew_capacity": 0 },
+    { "id": "V1", "type": "transport", "name": "Multi-purpose transport V1", "start_node": "BASE", "capacity": 10, "fuel_capacity": 30, "crew_capacity": 1 },
+    { "id": "C1", "type": "crew", "name": "Fire crew C1", "start_node": "FORK", "capacity": 0, "fuel_capacity": null, "crew_capacity": 0 },
+    { "id": "C2", "type": "crew", "name": "Fire crew C2", "start_node": "FORK", "capacity": 0, "fuel_capacity": null, "crew_capacity": 0 },
+    { "id": "C3", "type": "crew", "name": "Fire crew C3", "start_node": "BASE", "capacity": 0, "fuel_capacity": null, "crew_capacity": 0 }
+  ],
+
+  "wind": { "direction": "E", "speed": 2 },
+
+  "fire_params": {
+    "k": 0.06,
+    "p_max": 0.9,
+    "w_min": 0.25,
+    "wind_coeff": 0.25,
+    "side_weight": 1.0,
+    "diagonal_weight": 0.7,
+    "growth_every": 4,
+    "max_intensity": 4,
+    "growth_fuel_floor": 0.3,
+    "burn_rate_per_intensity": 0.04,
+    "burnout_fuel": 0.05,
+    "suppression_engine": 0.7,
+    "suppression_hand": 0.5,
+    "suppression_firebreak_bonus": 0.15,
+    "suppression_cap": 0.9,
+    "intensity_reduction_every": 3,
+    "contain_max_target_intensity": 3,
+    "contain_min_duration": 3,
+    "contain_reach_cells": 1,
+    "contain_max_targets": 3,
+    "clear_road_steps": 6,
+    "load_steps": 2,
+    "unload_steps": 1,
+    "refuel_steps": 3,
+    "transfer_board_steps": 1,
+    "transfer_drop_steps": 1,
+    "self_evacuation_per_step": 20,
+    "hazard_exposure_threshold": 2,
+    "crew_risk_hazard_threshold": 3,
+    "logistics_risk_fuel_floor": 5,
+    "logistics_risk_shelter_fraction": 0.95,
+    "logistics_risk_wait_steps": 3
+  },
+
+  "evidence": [
+    {
+      "evidence_id": "E-EVAC-01",
+      "holders": ["EVAC"],
+      "field_path": "zones.PR.assisted_initial",
+      "true_value": 30,
+      "prior_value": 12,
+      "summary": "Pine Ridge has about 30 residents needing assisted evacuation, well above the public estimate of 12",
+      "observed_step": 0,
+      "confidence": "high"
+    },
+    {
+      "evidence_id": "E-EVAC-02",
+      "holders": ["EVAC"],
+      "field_path": "zones.VJ.assisted_initial",
+      "true_value": 60,
+      "prior_value": 30,
+      "summary": "Valley Junction assisted demand is about 60 residents, double the public estimate of 30",
+      "observed_step": 0,
+      "confidence": "high"
+    },
+    {
+      "evidence_id": "E-EVAC-03",
+      "holders": ["EVAC"],
+      "field_path": "zones.NC.assisted_initial",
+      "true_value": 20,
+      "prior_value": 4,
+      "summary": "North Camp holds about 20 residents needing assistance, not the 4 publicly assumed",
+      "observed_step": 0,
+      "confidence": "high"
+    },
+    {
+      "evidence_id": "E-FIRE-01",
+      "holders": ["FIRE"],
+      "field_path": "cells[c1_1,c2_1,c1_2,c2_2].fuel_initial",
+      "true_value": 0.9,
+      "prior_value": 0.5,
+      "summary": "Ridge cells west of Ridge Pass carry heavy fuel near 0.9, not the 0.5 assumed publicly",
+      "observed_step": 0,
+      "confidence": "medium"
+    },
+    {
+      "evidence_id": "E-FIRE-02",
+      "holders": ["FIRE"],
+      "field_path": "cells.c2_1.firebreak_bonus",
+      "true_value": true,
+      "prior_value": false,
+      "summary": "Ridge Pass has a natural firebreak that makes containment work there more effective",
+      "observed_step": 0,
+      "confidence": "medium"
+    },
+    {
+      "evidence_id": "E-LOG-01",
+      "holders": ["LOG"],
+      "field_path": "roads.R2.initial_status",
+      "true_value": "CLOSED_CLEARABLE",
+      "prior_value": "OPEN",
+      "summary": "R2 Fork-Pine Ridge blocked by downed trees; a crew can clear it in about 6 steps",
+      "observed_step": 0,
+      "confidence": "high"
+    },
+    {
+      "evidence_id": "E-LOG-02",
+      "holders": ["LOG"],
+      "field_path": "shelters.SS.background",
+      "true_value": 320,
+      "prior_value": 290,
+      "summary": "Shelter South already holds about 320 self-evacuees, leaving far less room than the 290 assumed",
+      "observed_step": 0,
+      "confidence": "high"
+    }
+  ],
+
+  "targets": {
+    "EVAC": [
+      { "metric": "assisted_completion", "direction": "max", "aspiration": 0.9, "floor": 0.75, "revisable_by_agent": true },
+      { "metric": "civilian_exposure", "direction": "min", "aspiration": 600, "floor": 1200, "revisable_by_agent": true }
+    ],
+    "FIRE": [
+      { "metric": "fire_extent", "direction": "min", "aspiration": 22, "floor": 30, "revisable_by_agent": true },
+      { "metric": "crew_risk_steps", "direction": "min", "aspiration": 0, "floor": 4, "revisable_by_agent": true }
+    ],
+    "LOG": [
+      { "metric": "logistics_risk", "direction": "min", "aspiration": 1, "floor": 3, "revisable_by_agent": true }
+    ]
+  },
+
+  "events": []
+}
