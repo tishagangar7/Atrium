@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "scenario_id": "compound_failure",
+  "extends": "normal.json",
+  "title": "West Forest fire - compound failure at step 15",
+  "events": [
+    { "event_id": "ev-wind-15-dir", "step": 15, "kind": "wind_change", "target": "direction", "value": "SE", "public": true },
+    { "event_id": "ev-wind-15-speed", "step": 15, "kind": "wind_change", "target": "speed", "value": 3, "public": true },
+    { "event_id": "ev-road-15-r3", "step": 15, "kind": "road_status", "target": "R3", "value": "CLOSED_HARD", "public": true },
+    { "event_id": "ev-road-15-r5", "step": 15, "kind": "road_status", "target": "R5", "value": "CLOSED_HARD", "public": true },
+    { "event_id": "ev-res-15-b2", "step": 15, "kind": "resource_status", "target": "B2", "value": "OUT_OF_SERVICE", "public": true }
+  ]
+}
