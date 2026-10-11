@@ -1,0 +1,88 @@
+:root {
+  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  color: #e7ecef;
+  background: #131b20;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --surface: #1a242b;
+  --border: #303c44;
+  --muted: #a0afb8;
+  --accent: #d9e8df;
+  --blue: #99c5f0;
+  --orange: #efb080;
+  --teal: #90cfbf;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+select {
+  font: inherit;
+}
+button,
+a,
+summary,
+select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button,
+summary,
+select {
+  cursor: pointer;
+}
+button {
+  color: inherit;
+}
+button:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+button,
+a,
+select,
+summary {
+  transition:
+    background-color 160ms,
+    color 160ms;
+}
+:focus-visible {
+  outline: 2px solid #b7d9fd;
+  outline-offset: 4px;
+  border-radius: 3px;
+}
+button:disabled {
+  pointer-events: auto;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+svg {
+  flex-shrink: 0;
+}
+a {
+  color: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
