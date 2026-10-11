@@ -1,0 +1,725 @@
+/*
+ * Styling for the PRD incident scene, its controls and the A1 harness.
+ * Scoped to the .iv, .ec and .hz trees so it cannot affect the separate
+ * ucsc-visual-v1 demo in simulation.css.
+ *
+ * Status is never carried by colour alone (AC-035): roads also differ by
+ * stroke pattern and glyph, nodes by shape, fire by a printed intensity.
+ */
+
+.iv,
+.ec,
+.hz {
+  --pr-bg: #f6f5f1;
+  --pr-panel: #ffffff;
+  --pr-ink: #1b1b1f;
+  --pr-ink-soft: #55555f;
+  --pr-line: #c9c7c0;
+  --pr-grid: #d8d6ce;
+  --pr-unburned: #e8ecdf;
+  --pr-burned: #5d574f;
+  --pr-ext: #b9c7d6;
+  --pr-fire-1: #f6d38a;
+  --pr-fire-2: #f0a860;
+  --pr-fire-3: #de6f3e;
+  --pr-fire-4: #b43c25;
+  --pr-road: #3f3f46;
+  --pr-route: #2f6f4f;
+  --pr-node: #ffffff;
+  --pr-accent: #1f4f8f;
+  --pr-warn: #8a3b12;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iv,
+  .ec,
+  .hz {
+    --pr-bg: #15161a;
+    --pr-panel: #1e2026;
+    --pr-ink: #ecebe8;
+    --pr-ink-soft: #a7a6a2;
+    --pr-line: #3a3c44;
+    --pr-grid: #2c2e35;
+    --pr-unburned: #262a26;
+    --pr-burned: #4a453e;
+    --pr-ext: #38485a;
+    --pr-fire-1: #7a5c22;
+    --pr-fire-2: #a4682c;
+    --pr-fire-3: #c76134;
+    --pr-fire-4: #d8452a;
+    --pr-road: #c4c6cc;
+    --pr-route: #6fd3a0;
+    --pr-node: #2a2d35;
+    --pr-accent: #7fb0ec;
+    --pr-warn: #e8a06a;
+  }
+}
+
+/* --- viewer shell --------------------------------------------------------- */
+
+.iv {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  color: var(--pr-ink);
+}
+
+.iv-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.iv-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+.iv-sub,
+.iv-note {
+  margin: 2px 0 0;
+  font-size: 0.78rem;
+  color: var(--pr-ink-soft);
+}
+
+.iv-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.iv-mode,
+.iv-synthetic {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--pr-line);
+}
+
+.iv-mode-live {
+  background: #1d6b3f;
+  border-color: #1d6b3f;
+  color: #ffffff;
+}
+
+.iv-mode-replay {
+  background: #6b4a9b;
+  border-color: #6b4a9b;
+  color: #ffffff;
+}
+
+.iv-mode-fixture {
+  background: #8a6a12;
+  border-color: #8a6a12;
+  color: #ffffff;
+}
+
+.iv-synthetic {
+  color: var(--pr-ink-soft);
+}
+
+.iv-stage {
+  background: var(--pr-bg);
+  border: 1px solid var(--pr-line);
+  border-radius: 10px;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.iv-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+}
+
+/* --- cells and grid ------------------------------------------------------- */
+
+.iv-cell rect {
+  fill: var(--pr-unburned);
+}
+
+.iv-cell-BURNED_OUT rect {
+  fill: var(--pr-burned);
+}
+
+.iv-cell-EXTINGUISHED rect {
+  fill: var(--pr-ext);
+}
+
+/*
+ * These need the same `.iv-cell rect` specificity as the base fill above,
+ * otherwise the unburned colour wins and a burning cell renders flat.
+ */
+.iv-cell rect.iv-fire-1 {
+  fill: var(--pr-fire-1);
+}
+
+.iv-cell rect.iv-fire-2 {
+  fill: var(--pr-fire-2);
+}
+
+.iv-cell rect.iv-fire-3 {
+  fill: var(--pr-fire-3);
+}
+
+.iv-cell rect.iv-fire-4 {
+  fill: var(--pr-fire-4);
+}
+
+.iv-cell-intensity,
+.iv-cell-out,
+.iv-cell-break {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--pr-ink);
+  text-anchor: end;
+}
+
+.iv-cell-break {
+  text-anchor: start;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+.iv-grid-lines line {
+  stroke: var(--pr-grid);
+  stroke-width: 1;
+}
+
+/* --- roads ---------------------------------------------------------------- */
+
+.iv-road-line {
+  stroke: var(--pr-road);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.iv-road-CLOSED_CLEARABLE,
+.iv-road-CLOSED_HARD {
+  stroke: var(--pr-warn);
+}
+
+.iv-road-route {
+  stroke: var(--pr-route);
+  stroke-width: 12;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+
+.iv-road-tag rect {
+  fill: var(--pr-panel);
+  stroke: var(--pr-line);
+  stroke-width: 1;
+}
+
+.iv-road-id {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--pr-ink);
+  text-anchor: middle;
+}
+
+/* --- nodes ---------------------------------------------------------------- */
+
+.iv-node rect,
+.iv-node polygon,
+.iv-node circle {
+  fill: var(--pr-node);
+  stroke: var(--pr-ink);
+  stroke-width: 2;
+}
+
+.iv-node-zone rect {
+  stroke: var(--pr-accent);
+}
+
+.iv-node-id {
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--pr-ink);
+  text-anchor: middle;
+}
+
+.iv-node-name {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--pr-ink);
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--pr-bg);
+  stroke-width: 4;
+}
+
+/* --- resources ------------------------------------------------------------ */
+
+.iv-res circle {
+  fill: var(--pr-panel);
+  stroke: var(--pr-ink);
+  stroke-width: 2;
+}
+
+.iv-res-crew circle {
+  stroke-dasharray: 4 3;
+}
+
+.iv-res-down circle {
+  opacity: 0.45;
+}
+
+.iv-res-glyph {
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--pr-ink);
+  text-anchor: middle;
+}
+
+.iv-res-id {
+  font-size: 10px;
+  fill: var(--pr-ink);
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: var(--pr-bg);
+  stroke-width: 3;
+}
+
+.iv-wind line {
+  stroke: var(--pr-accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.iv-wind-head {
+  fill: var(--pr-accent);
+}
+
+/* --- panels --------------------------------------------------------------- */
+
+.iv-panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+
+.iv-panel {
+  background: var(--pr-panel);
+  border: 1px solid var(--pr-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.iv-panel h3 {
+  margin: 0 0 7px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pr-ink-soft);
+}
+
+.iv-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.iv-panel th,
+.iv-panel td {
+  text-align: right;
+  padding: 3px 4px;
+  border-bottom: 1px solid var(--pr-grid);
+}
+
+.iv-panel thead th {
+  font-size: 0.68rem;
+  color: var(--pr-ink-soft);
+  font-weight: 600;
+}
+
+.iv-panel tbody th[scope="row"] {
+  text-align: left;
+  font-weight: 500;
+}
+
+.iv-metrics {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+}
+
+.iv-metrics > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--pr-grid);
+  padding-bottom: 3px;
+}
+
+.iv-metrics dt {
+  color: var(--pr-ink-soft);
+}
+
+.iv-metrics dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.iv-legend {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: 0.76rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: var(--pr-ink);
+}
+
+.iv-key {
+  display: inline-block;
+  width: 13px;
+  height: 11px;
+  margin-right: 5px;
+  vertical-align: -1px;
+  border: 2px solid var(--pr-ink);
+  background: var(--pr-node);
+}
+
+.iv-key-zone {
+  border-radius: 3px;
+  border-color: var(--pr-accent);
+}
+
+.iv-key-shelter {
+  clip-path: polygon(50% 0, 100% 35%, 100% 100%, 0 100%, 0 35%);
+}
+
+.iv-key-base {
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.iv-key-junction {
+  border-radius: 50%;
+  width: 11px;
+}
+
+/* --- environmental controls ---------------------------------------------- */
+
+.ec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--pr-ink);
+  min-width: 0;
+}
+
+.ec-head h3,
+.hz-log h3,
+.hz-prov h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pr-ink-soft);
+}
+
+.ec-note,
+.ec-current {
+  margin: 4px 0 0;
+  font-size: 0.74rem;
+  color: var(--pr-ink-soft);
+}
+
+.ec-group {
+  background: var(--pr-panel);
+  border: 1px solid var(--pr-line);
+  border-radius: 10px;
+  padding: 9px 11px 11px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ec-group:disabled {
+  opacity: 0.55;
+}
+
+.ec-group legend {
+  padding: 0 4px;
+  font-size: 0.74rem;
+  font-weight: 650;
+  color: var(--pr-ink);
+}
+
+.ec-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.78rem;
+}
+
+.ec-field > span {
+  color: var(--pr-ink-soft);
+}
+
+.ec select,
+.hz-field select {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 5px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--pr-line);
+  background: var(--pr-bg);
+  color: var(--pr-ink);
+  max-width: 100%;
+}
+
+.ec-radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.ec-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+}
+
+.ec-apply {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--pr-accent);
+  background: transparent;
+  color: var(--pr-accent);
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.ec-apply:hover:not(:disabled) {
+  background: var(--pr-accent);
+  color: var(--pr-bg);
+}
+
+.ec-apply-strong {
+  border-color: var(--pr-warn);
+  color: var(--pr-warn);
+}
+
+.ec-apply-strong:hover:not(:disabled) {
+  background: var(--pr-warn);
+  color: var(--pr-bg);
+}
+
+.ec-group-demo {
+  border-style: dashed;
+}
+
+/* --- harness -------------------------------------------------------------- */
+
+.hz {
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 18px clamp(16px, 3vw, 32px) 40px;
+  background: var(--pr-bg);
+  color: var(--pr-ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.hz *,
+.hz *::before,
+.hz *::after {
+  box-sizing: border-box;
+}
+
+.hz-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.hz-head h1 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+
+.hz-sub {
+  margin: 3px 0 0;
+  font-size: 0.82rem;
+  color: var(--pr-ink-soft);
+  max-width: 70ch;
+}
+
+.hz-link {
+  font-size: 0.78rem;
+  color: var(--pr-accent);
+}
+
+.hz-banner {
+  border: 1px solid var(--pr-warn);
+  border-left-width: 5px;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  background: var(--pr-panel);
+}
+
+.hz-banner code,
+.hz-log code {
+  font-size: 0.76rem;
+}
+
+.hz-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  background: var(--pr-panel);
+  border: 1px solid var(--pr-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.hz-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.78rem;
+  color: var(--pr-ink-soft);
+}
+
+.hz-field-wide {
+  min-width: 220px;
+  flex: 1 1 220px;
+}
+
+.hz-field input[type="range"] {
+  width: 100%;
+}
+
+.hz-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+}
+
+.hz-events {
+  margin: 0;
+  flex: 1 1 100%;
+  font-size: 0.74rem;
+  color: var(--pr-ink-soft);
+}
+
+.hz-note {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  color: var(--pr-ink);
+}
+
+.hz-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+.hz-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.hz-log,
+.hz-prov {
+  background: var(--pr-panel);
+  border: 1px solid var(--pr-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.hz-log ol {
+  margin: 7px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hz-log li {
+  overflow-wrap: anywhere;
+}
+
+.hz-empty,
+.hz-prov p {
+  margin: 7px 0 0;
+  font-size: 0.74rem;
+  color: var(--pr-ink-soft);
+}
+
+/* --- focus and motion ---------------------------------------------------- */
+
+.hz :focus-visible,
+.iv :focus-visible,
+.ec :focus-visible {
+  outline: 3px solid var(--pr-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hz *,
+  .iv * {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* --- narrow layout ------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .hz-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hz-side {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hz-side > * {
+    flex: 1 1 280px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hz {
+    padding: 14px 16px 32px;
+  }
+
+  .hz-side {
+    flex-direction: column;
+  }
+}
