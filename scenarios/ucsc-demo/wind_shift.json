@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "scenario_id": "wind_shift",
+  "extends": "normal.json",
+  "title": "West Forest fire - wind shift at step 15",
+  "events": [
+    { "event_id": "ev-wind-15-dir", "step": 15, "kind": "wind_change", "target": "direction", "value": "SE", "public": true },
+    { "event_id": "ev-wind-15-speed", "step": 15, "kind": "wind_change", "target": "speed", "value": 3, "public": true }
+  ]
+}
