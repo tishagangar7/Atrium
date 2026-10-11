@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "scenario_id": "road_closure",
+  "extends": "normal.json",
+  "title": "West Forest fire - R3 lost at step 15",
+  "events": [
+    { "event_id": "ev-road-15-r3", "step": 15, "kind": "road_status", "target": "R3", "value": "CLOSED_HARD", "public": true }
+  ]
+}
