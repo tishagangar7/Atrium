@@ -1,0 +1,141 @@
+{
+  "schema_version": "1",
+  "fixture_id": "normal-render-series",
+  "label": "Synthetic simulation",
+  "provenance": "HAND-AUTHORED FIXTURE. These frames were written by hand to exercise every state the incident scene can draw: fire ignition and intensity growth, an extinguished cell, a vehicle mid-edge, a road cleared by a crew, a hard closure, a wind shift, a resource out of service, passengers aboard and shelter arrivals. NO SIMULATOR PRODUCED THESE NUMBERS. They are not a forecast, not a replay trace and not a benchmark result, and they must never be presented as any of those. The authoritative fire and resource rules live in backend/app/sim and do not exist yet.",
+  "base": "normal-reset.json",
+  "frames": [
+    {
+      "step": 0,
+      "state_version": 0,
+      "paused": true,
+      "note": "Reset. Three cells burning at the west edge, every resource at its start node.",
+      "patch": {}
+    },
+    {
+      "step": 4,
+      "state_version": 1,
+      "paused": false,
+      "note": "Plan committed. Buses roll out of BASE on R1; fire creeps east under a moderate easterly.",
+      "patch": {
+        "cells": {
+          "c1_2": { "state": "BURNING", "intensity": 1, "ignited_step": 3 },
+          "c0_1": { "state": "BURNING", "intensity": 1, "ignited_step": 4 },
+          "c1_3": { "state": "BURNING", "intensity": 2 }
+        },
+        "resources": {
+          "B1": { "node": null, "edge": "R1", "edge_steps_left": 1, "edge_to": "FORK" },
+          "B2": { "node": null, "edge": "R1", "edge_steps_left": 2, "edge_to": "FORK" },
+          "V1": { "node": null, "edge": "R1", "edge_steps_left": 2, "edge_to": "FORK" }
+        },
+        "zones": {
+          "NC": { "self_evacuated": 20 },
+          "PR": { "self_evacuated": 80 },
+          "VJ": { "self_evacuated": 80 }
+        }
+      }
+    },
+    {
+      "step": 8,
+      "state_version": 1,
+      "paused": false,
+      "note": "C1 works on clearing R2. B1 has reached VJ and is loading. Ridge fuel carries the fire up to the Pass.",
+      "patch": {
+        "cells": {
+          "c1_2": { "intensity": 2 },
+          "c0_1": { "intensity": 2 },
+          "c1_1": { "state": "BURNING", "intensity": 1, "ignited_step": 7 },
+          "c2_2": { "state": "BURNING", "intensity": 1, "ignited_step": 8 },
+          "c0_2": { "intensity": 3 },
+          "c0_3": { "intensity": 3 }
+        },
+        "roads": { "R2": { "clear_progress": 3 } },
+        "resources": {
+          "B1": { "node": "VJ", "edge": null, "edge_steps_left": 0 },
+          "B2": { "node": "FORK", "edge": null, "edge_steps_left": 0 },
+          "V1": { "node": "FORK", "edge": null, "edge_steps_left": 0 },
+          "C1": { "node": "FORK" }
+        },
+        "zones": {
+          "PR": { "self_evacuated": 90 },
+          "VJ": { "self_evacuated": 160 }
+        }
+      }
+    },
+    {
+      "step": 12,
+      "state_version": 1,
+      "paused": false,
+      "note": "R2 is cleared and now open to everyone. B1 carries 30 from VJ toward SS. C2 has knocked one ridge cell down.",
+      "patch": {
+        "cells": {
+          "c1_1": { "state": "EXTINGUISHED", "intensity": 0 },
+          "c2_2": { "intensity": 2 },
+          "c1_2": { "intensity": 3 },
+          "c0_2": { "state": "BURNED_OUT", "intensity": 0, "fuel_burned": 0.7 },
+          "c0_4": { "state": "BURNING", "intensity": 1, "ignited_step": 11 }
+        },
+        "roads": { "R2": { "status_override": "OPEN", "clear_progress": 6 } },
+        "resources": {
+          "B1": {
+            "node": null,
+            "edge": "R5",
+            "edge_steps_left": 1,
+            "edge_to": "SS",
+            "aboard_people": { "VJ": 30 }
+          },
+          "B2": { "node": null, "edge": "R2", "edge_steps_left": 2, "edge_to": "PR" },
+          "V1": { "node": "PR", "edge": null, "edge_steps_left": 0 },
+          "C1": { "node": "PR" },
+          "C2": { "node": "FORK" }
+        },
+        "zones": {
+          "VJ": { "self_evacuated": 240, "assisted_picked_up": 30 }
+        }
+      }
+    },
+    {
+      "step": 16,
+      "state_version": 2,
+      "paused": true,
+      "note": "Disruption injected. Wind swings to the south-east and strengthens, R3 is lost for good and B2 drops out. Acceptances are void and a new decision point opens.",
+      "patch": {
+        "wind": { "direction": "SE", "speed": 3 },
+        "cells": {
+          "c2_2": { "intensity": 3 },
+          "c2_3": { "state": "BURNING", "intensity": 1, "ignited_step": 15 },
+          "c1_4": { "state": "BURNING", "intensity": 1, "ignited_step": 16 },
+          "c0_3": { "state": "BURNED_OUT", "intensity": 0, "fuel_burned": 0.7 }
+        },
+        "roads": { "R3": { "status_override": "CLOSED_HARD" } },
+        "resources": {
+          "B1": { "node": "SS", "edge": null, "edge_steps_left": 0, "aboard_people": { "VJ": 30 } },
+          "B2": { "node": "PR", "edge": null, "edge_steps_left": 0, "available": false },
+          "V1": { "node": "PR", "edge": null, "edge_steps_left": 0 }
+        }
+      }
+    },
+    {
+      "step": 22,
+      "state_version": 3,
+      "paused": false,
+      "note": "Revised plan running. B1 has unloaded at SS. V1 has carried C1 to the Pass, so C1 is a hand crew and its engine waits at PR. C3 holds the valley flank.",
+      "patch": {
+        "cells": {
+          "c2_1": { "state": "BURNING", "intensity": 1, "ignited_step": 20 },
+          "c2_3": { "intensity": 2 },
+          "c1_4": { "intensity": 2 },
+          "c1_2": { "state": "EXTINGUISHED", "intensity": 0 },
+          "c2_4": { "state": "BURNING", "intensity": 1, "ignited_step": 22 }
+        },
+        "resources": {
+          "B1": { "node": "SS", "edge": null, "edge_steps_left": 0, "aboard_people": {} },
+          "V1": { "node": "PASS", "edge": null, "edge_steps_left": 0 },
+          "C1": { "node": "PASS", "engine_node": "PR" },
+          "C3": { "node": "VJ" }
+        },
+        "shelters": { "SS": { "arrivals": 30 } }
+      }
+    }
+  ]
+}
